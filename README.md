@@ -23,7 +23,7 @@ Filename | Description
 `keys/pdh_priv.pem` | PDH private key that was used to initiate VM migration of the `vm.mem` image.
 `keys/pdh_remote.cert` | The PDH certificate of the target host.
 
-The image of encrypted guest memory used for this proof-of-concept can be found [here](TODO).
+The image of encrypted guest memory used for this proof-of-concept can be found at : [vm.mem](https://github.com/RobertBuhren/amd-sev-migration-attack/releases/download/first_release/vm.mem).
 
 
 ## Background

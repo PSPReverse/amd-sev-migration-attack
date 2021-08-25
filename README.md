@@ -8,7 +8,7 @@ You can find a pre-print version of the paper [here](https://arxiv.org/abs/1908.
 
 ### Update August 2021
 
-In our original paper we leveraged a firmware issue present only in Zen 1 AMD Epyc CPUs to extract the CEK's.
+In our original paper we leveraged a firmware issue present only in Zen 1 AMD Epyc CPUs to extract the CEKs.
 In a recent paper we present the results of our glitching attack against AMD CPUs: *One Glitch to Rule Them All: Fault Injection Attacks Against AMD's Secure Encrypted Virtualization*.
 The glitching attack works against Zen 1, Zen 2 and Zen 3 AMD Epyc CPUs and re-enables the migration attack described in this readme on these CPUs.
 

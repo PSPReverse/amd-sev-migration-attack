@@ -3,8 +3,20 @@ This repository contains a proof-of-concept implementation of the "Migration Att
 
 *Insecure Until Proven Updated: Analyzing AMD SEV's Remote Attestation*
 
-The paper will be presented at the [*26th ACM Conference on Computer and Communications Security*](https://sigsac.org/ccs/CCS2019/) (CCS'19) in London.
+The paper was presented at the [*26th ACM Conference on Computer and Communications Security*](https://sigsac.org/ccs/CCS2019/) (CCS'19) in London.
 You can find a pre-print version of the paper [here](https://arxiv.org/abs/1908.11680).
+
+### Update August 2021
+
+In our original paper we leveraged a firmware issue present only in Zen 1 AMD Epyc CPUs to extract the CEK's.
+In a recent paper we present the results of our glitching attack against AMD CPUs: *One Glitch to Rule Them All: Fault Injection Attacks Against AMD's Secure Encrypted Virtualization*.
+The glitching attack works against Zen 1, Zen 2 and Zen 3 AMD Epyc CPUs and re-enables the migration attack described in this readme on these CPUs.
+
+You can find a pre-print version of the paper here: [https://arxiv.org/abs/2108.04575](https://arxiv.org/abs/2108.04575)
+The paper will be presented at the [*28th ACM Conference on Computer and Communications Security*](https://sigsac.org/ccs/CCS2021/) (CCS'21) in Seoul.
+
+
+## Overview
 
 In the paper we show that we were able to obtain the `chip-endorsement-key` (CEK) from AMD EPYC cpus of the Naples series.
 This key plays a central role in the trust model of the *Secure Encrypted Virtualization* technology from AMD.
@@ -75,10 +87,13 @@ We were able to extract the full memory of the virtual machine including keyboar
 The target host was running the latest SEV firmware at the time of writing (SEV API 17. Build 22).
 We would like to emphasize that we do NOT require any security issues to be present in either the target host nor in the target virtual machine. 
 Our attack does NOT depend on any specific guest software or services running inside a guest.
-To the best of our knowledge, all Epyc systems of the AMD EPYC Naples (Zen1) are affected.
+~~To the best of our knowledge, all Epyc systems of the AMD EPYC Naples (Zen1) are affected.~~
 
-While we don't see any obstacles to make this attack work on newer, Zen2 based systems, we are not aware of any firmware issues in that allow to extract a *chip-endorsement-key* from Zen2 based systems.
-The extracted CEK from Zen1 systems is not accepted by Zen2 systems.
+~~While we don't see any obstacles to make this attack work on newer, Zen2 based systems, we are not aware of any firmware issues in that allow to extract a *chip-endorsement-key* from Zen2 based systems.
+The extracted CEK from Zen1 systems is not accepted by Zen2 systems.~~
+The presented attack works on AMD Epyc Zen 1, Zen 2 and Zen 3 systems.
+Note: the extracted CEK must be extracted from a CPU of the same microarchitecture as the targeted CPU, i.e., to mount this attack on a Zen 2 CPU, the attacker must extract the CEK from another Zen 2 CPU.
+
 
 The scripts in this repository contain the exact steps necessary to perform the migration attack on an SEV protected virtual machine. 
 We also include an encrypted guest memory image and the corresponding PDH private key that allows to decrypt the memory. 
